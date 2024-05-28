@@ -17,10 +17,10 @@ public class Main {
         return (password.matches(".*[a-z].*") && password.matches(".*[A-Z].*"));
     }
 
-    public static boolean isPasswordCommonlyInUse(String password, String[] commonPasswords) {
+    public static boolean isNotCommonlyInUse(String password, String[] commonPasswords) {
         boolean result = true;
         for (String commonPassword : commonPasswords) {
-            if (commonPassword.equalsIgnoreCase(password)) {
+            if ((commonPassword.replaceAll("[0-9]", "")).equalsIgnoreCase(password.replaceAll("[0-9]", ""))) {
                 result = false;
                 break;
             }

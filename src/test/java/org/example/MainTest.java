@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class MainTest {
+    String[] passwordsToCheck = {"Password1", "Aa345678", "Password123", "1234Password", "Master123"};
 
     @Test
     void isAtLeast8Chars_returnsFalse_whenPasswordTooShort() {
@@ -62,23 +63,26 @@ class MainTest {
     }
 
     @Test
-    void isPasswordCommonlyInUse_returnsFalse_whenPasswordIsCommonlyInUse() {
-        String[] passwordsToCheck = {"Password1", "Aa345678", "Password3", "Password4"};
-        boolean result = Main.isPasswordCommonlyInUse("Password1", passwordsToCheck);
+    void isNotCommonlyInUse_returnsFalse_whenPasswordIsCommonlyInUse() {
+        boolean result = Main.isNotCommonlyInUse("Password1", passwordsToCheck);
         assertFalse(result);
     }
 
     @Test
-    void isPasswordCommonlyInUse_returnsFalse_whenPasswordIsTooSimilarToCommonPassword() {
-        String[] passwordsToCheck = {"Password1", "Aa345678", "Password3", "Password4"};
-        boolean result = Main.isPasswordCommonlyInUse("passWord1", passwordsToCheck);
+    void isNotCommonlyInUse_returnsFalse_whenPasswordIsSimilarToCommonPassword() {
+        boolean result = Main.isNotCommonlyInUse("passWord1", passwordsToCheck);
         assertFalse(result);
     }
 
     @Test
-    void isPasswordCommonlyInUse_returnsTrue_whenPasswordIsActuallySave() {
-        String[] passwordsToCheck = {"Password1", "Aa345678", "Password3", "Password4"};
-        boolean result = Main.isPasswordCommonlyInUse("P20wd24!", passwordsToCheck);
+    void isNotCommonlyInUse_returnsFalse_whenPasswordIsJustDiffInDigitsToCommonPassword() {
+        boolean result = Main.isNotCommonlyInUse("pass237483Word4567", passwordsToCheck);
+        assertFalse(result);
+    }
+
+    @Test
+    void isNotCommonlyInUse_returnsTrue_whenPasswordIsActuallySave() {
+        boolean result = Main.isNotCommonlyInUse("P20wd24!", passwordsToCheck);
         assertTrue(result);
     }
 }
