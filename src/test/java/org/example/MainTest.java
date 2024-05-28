@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class MainTest {
     String[] passwordsToCheck = {"Password1", "Aa345678", "Password123", "1234Password", "Master123"};
+    String[] testPasswords = {"P20wd24!", "Ade34_78!", "g00d_Pa55W0rd!"};
 
     @Test
     void isAtLeast8Chars_returnsFalse_whenPasswordTooShort() {
@@ -16,8 +17,9 @@ class MainTest {
 
     @Test
     void isAtLeast8Chars_returnsTrue_whenPasswordLongEnough() {
-        boolean result = Main.isAtLeast8Chars("1234567891011");
-        assertTrue(result);
+        for (String password : testPasswords) {
+            assertTrue(Main.isAtLeast8Chars(password));
+        }
     }
 
     @Test
@@ -40,8 +42,9 @@ class MainTest {
 
     @Test
     void containsDigits_returnsTrue_whenPasswordContainDigit() {
-        boolean result = Main.containsDigits("abcd1fgh5");
-        assertTrue(result);
+        for (String password : testPasswords) {
+            assertTrue(Main.containsDigits(password));
+        }
     }
 
     @Test
@@ -58,14 +61,17 @@ class MainTest {
 
     @Test
     void containsLowerAndUppercase_returnsTrue_whenPasswordContainLowerAnd_Uppercase() {
-        boolean result = Main.containsLowerAndUppercase("abcDefGHijk");
-        assertTrue(result);
+        for (String password : testPasswords) {
+            assertTrue(Main.containsLowerAndUppercase(password));
+        }
     }
 
     @Test
     void containsSpecialCharacters_returnsTrue_whenPasswordContainsSpecialCharacters() {
-        assertTrue(Main.containsSpecialCharacters("abcDef%.ijk"));
         assertFalse(Main.containsSpecialCharacters("abcdefhi25~k"));
+        for (String password : testPasswords) {
+            assertTrue(Main.containsSpecialCharacters(password));
+        }
     }
 
     @Test
@@ -88,7 +94,8 @@ class MainTest {
 
     @Test
     void isNotCommonlyInUse_returnsTrue_whenPasswordIsActuallySave() {
-        boolean result = Main.isNotCommonlyInUse("P20wd24!", passwordsToCheck);
-        assertTrue(result);
+        for (String password : testPasswords) {
+            assertTrue(Main.isNotCommonlyInUse(password, passwordsToCheck));
+        }
     }
 }
