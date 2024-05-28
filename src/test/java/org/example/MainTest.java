@@ -44,7 +44,21 @@ class MainTest {
     }
 
     @Test
-    void containsLowerAndUppercase() {
+    void containsLowerAndUppercase_returnsFalse_whenPasswordNotContainUppercase() {
+        boolean result = Main.containsLowerAndUppercase("abcdefghijk");
+        assertFalse(result);
+    }
+
+    @Test
+    void containsLowerAndUppercase_returnsFalse_whenPasswordNotContainLowercase() {
+        boolean result = Main.containsLowerAndUppercase("ABCDEFGHIJK");
+        assertFalse(result);
+    }
+
+    @Test
+    void containsLowerAndUppercase_returnsTrue_whenPasswordContainLowerAnd_Uppercase() {
+        boolean result = Main.containsLowerAndUppercase("abcDefGHijk");
+        assertTrue(result);
     }
 
     @Test

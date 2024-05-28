@@ -13,7 +13,9 @@ public class Main {
         return password.matches(".*[0-9].*");
     }
 
-//    public static boolean containsLowerAndUppercase(String password) {}
+    public static boolean containsLowerAndUppercase(String password) {
+        return (password.matches(".*[a-z].*") && password.matches(".*[A-Z].*"));
+    }
 //
 //    public static boolean isCommonlyInUsed(String password) {}
 }
