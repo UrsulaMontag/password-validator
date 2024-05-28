@@ -62,6 +62,23 @@ class MainTest {
     }
 
     @Test
-    void isCommonlyInUsed() {
+    void isPasswordCommonlyInUse_returnsFalse_whenPasswordIsCommonlyInUse() {
+        String[] passwordsToCheck = {"Password1", "Aa345678", "Password3", "Password4"};
+        boolean result = Main.isPasswordCommonlyInUse("Password1", passwordsToCheck);
+        assertFalse(result);
+    }
+
+    @Test
+    void isPasswordCommonlyInUse_returnsFalse_whenPasswordIsTooSimilarToCommonPassword() {
+        String[] passwordsToCheck = {"Password1", "Aa345678", "Password3", "Password4"};
+        boolean result = Main.isPasswordCommonlyInUse("passWord1", passwordsToCheck);
+        assertFalse(result);
+    }
+
+    @Test
+    void isPasswordCommonlyInUse_returnsTrue_whenPasswordIsActuallySave() {
+        String[] passwordsToCheck = {"Password1", "Aa345678", "Password3", "Password4"};
+        boolean result = Main.isPasswordCommonlyInUse("P20wd24!", passwordsToCheck);
+        assertTrue(result);
     }
 }

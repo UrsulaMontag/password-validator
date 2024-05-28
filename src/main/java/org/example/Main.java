@@ -16,6 +16,15 @@ public class Main {
     public static boolean containsLowerAndUppercase(String password) {
         return (password.matches(".*[a-z].*") && password.matches(".*[A-Z].*"));
     }
-//
-//    public static boolean isCommonlyInUsed(String password) {}
+
+    public static boolean isPasswordCommonlyInUse(String password, String[] commonPasswords) {
+        boolean result = true;
+        for (String commonPassword : commonPasswords) {
+            if (commonPassword.equalsIgnoreCase(password)) {
+                result = false;
+                break;
+            }
+        }
+        return result;
+    }
 }
