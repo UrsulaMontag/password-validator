@@ -63,6 +63,12 @@ class MainTest {
     }
 
     @Test
+    void containsSpecialCharacters_returnsTrue_whenPasswordContainsSpecialCharacters() {
+        assertTrue(Main.containsSpecialCharacters("abcDef%.ijk"));
+        assertFalse(Main.containsSpecialCharacters("abcdefhi25~k"));
+    }
+
+    @Test
     void isNotCommonlyInUse_returnsFalse_whenPasswordIsCommonlyInUse() {
         boolean result = Main.isNotCommonlyInUse("Password1", passwordsToCheck);
         assertFalse(result);

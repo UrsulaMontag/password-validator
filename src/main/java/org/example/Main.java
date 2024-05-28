@@ -17,6 +17,10 @@ public class Main {
         return (password.matches(".*[a-z].*") && password.matches(".*[A-Z].*"));
     }
 
+    public static boolean containsSpecialCharacters(String password) {
+        return (password.matches(".*[!§°@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>/?].*"));
+    }
+
     public static boolean isNotCommonlyInUse(String password, String[] commonPasswords) {
         boolean result = true;
         for (String commonPassword : commonPasswords) {
